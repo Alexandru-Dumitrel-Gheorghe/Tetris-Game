@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Tetris Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tetris is a timeless and highly addictive puzzle game that has stood the test of time. In this game, players must arrange falling tetrominoes (shapes made up of four blocks) in such a way that they form complete horizontal lines on the game board. The goal is to clear these lines by filling them entirely with blocks, which results in them disappearing, earning the player points.
 
-## Available Scripts
+The game is set on a 10x20 grid, where tetrominoes fall from the top of the screen. The player can move the pieces left, right, or down, and also rotate them to fit the available spaces. As the game progresses, the speed at which the pieces fall gradually increases, making it more challenging for the player to keep up with the pace.
 
-In the project directory, you can run:
+Each time a horizontal line is filled completely, it disappears, and the player is awarded points. The game ends when the stack of tetrominoes reaches the top of the screen, leaving no room for new pieces to fall. The player's goal is to clear as many lines as possible before the game ends.
 
-### `npm start`
+## Technologies Used:
+- **React.js**: For building the interactive UI and managing the game state.
+- **CSS**: For styling the game layout.
+- **JavaScript**: For the game logic, including piece movement, rotation, collision detection, and line clearing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features:
+- **Responsive design**: The game is designed to work smoothly on both desktop and mobile devices.
+- **Simple controls**: The player can move tetrominoes using the arrow keys and rotate them using the up arrow key.
+- **Speed increase**: The speed of the falling pieces increases as the game progresses, adding more challenge.
+- **Score system**: Points are earned by clearing lines, and the score is displayed during gameplay.
+- **Game over**: The game ends when the tetrominoes reach the top of the screen.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to Play:
+1. Use the arrow keys to move the tetrominoes:
+   - Left Arrow: Move the piece left.
+   - Right Arrow: Move the piece right.
+   - Down Arrow: Move the piece down faster.
+   - Up Arrow: Rotate the piece clockwise.
+2. Clear horizontal lines by filling them with blocks.
+3. Keep clearing lines and aim for the highest score possible.
+4. The game ends when the pieces stack up to the top of the screen.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
