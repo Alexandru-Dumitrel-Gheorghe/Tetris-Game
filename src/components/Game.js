@@ -209,25 +209,6 @@ const Game = () => {
     setBoard(createEmptyBoard());
     setScore(0);
   };
-  // ... restul codului
-
-return (
-    <div className="game-container">
-      
-      <p>Scor: {score}</p>
-  
-      <div className="game-controls">
-        <button onClick={handleStart}>Start</button>
-        <button onClick={handlePause}>{isRunning ? "Pauză" : "Continuă"}</button>
-        <button onClick={handleStop}>Stop</button>
-      </div>
-  
-      <Board board={drawPiece()} />
-  
-      {/* Aici afișăm numele autorului */}
-      <p className="author-credit">Developed by Alexandru Gheorghe</p>
-    </div>
-  );
   
 
   return (
