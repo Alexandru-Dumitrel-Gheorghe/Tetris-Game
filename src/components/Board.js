@@ -1,13 +1,19 @@
 import React from "react";
 
-const Board = ({ board }) => {
+const Board = ({ board, preview }) => {
   return (
-    <div className="board">
+    <div className={`board ${preview ? "preview-board" : ""}`}>
       {board.map((row, rowIndex) =>
         row.map((cell, cellIndex) => (
           <div
             key={`${rowIndex}-${cellIndex}`}
-            className={`cell ${cell ? `filled-${cell}` : ""}`}
+            className={`cell ${
+              cell
+                ? cell.toString().startsWith("ghost-")
+                  ? "ghost-cell"
+                  : `filled-${cell}`
+                : ""
+            }`}
           ></div>
         ))
       )}

@@ -1,226 +1,221 @@
-/* ===========================
-   RESET DE BAZĂ
-   =========================== */
-   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* ===========================
-     FUNDAL & CORPUL PAGINII
-     =========================== */
-  body {
-    /* Gradient pe fundal, ușor mai luminos */
-    background: linear-gradient(120deg, #1e1e1e, #2c2c2c);
-    font-family: "Roboto", Arial, sans-serif;
-    color: #ffffff;
-  
-    /* Centrare orizontală & verticală */
-    width: 100%;
-    height: 100vh;
+/* RESET & Fonturi */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+  background: radial-gradient(ellipse at center, #121212 0%, #000 100%);
+  font-family: 'Orbitron', sans-serif;
+  color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container principal */
+.app-container {
+  background: rgba(0, 0, 0, 0.75);
+  border: 2px solid #00ffcc;
+  border-radius: 12px;
+  padding: 30px 24px;
+  box-shadow: 0 0 20px #00ffcc;
+  width: clamp(320px, 90vw, 500px);
+}
+
+/* Zona de joc */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Titlul și scorul */
+.game-title {
+  font-size: 2rem;
+  text-shadow: 0 0 6px #00ffcc;
+}
+.score-display {
+  font-size: 1.1rem;
+  text-shadow: 0 0 4px #00ffcc;
+}
+
+/* Butoane de control principale */
+.game-controls {
+  display: flex;
+  gap: 16px;
+}
+.game-controls button {
+  background: transparent;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.game-controls button:hover {
+  background: #00ffcc;
+  color: #000;
+  transform: scale(1.05);
+}
+.game-controls button:active {
+  transform: scale(0.98);
+}
+
+/* Tabla de joc */
+.board {
+  display: grid;
+  grid-template-rows: repeat(20, 24px);
+  grid-template-columns: repeat(10, 24px);
+  gap: 2px;
+  background: #222;
+  border: 2px solid #00ffcc;
+  border-radius: 8px;
+  padding: 4px;
+}
+.cell {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(0, 255, 204, 0.4);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Stiluri pentru tetromino-uri */
+.cell.filled-I {
+  background: #00f0f0;
+  box-shadow: 0 0 8px #00f0f0, inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+.cell.filled-J {
+  background: #4e5dff;
+  box-shadow: 0 0 8px #4e5dff, inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+.cell.filled-L {
+  background: #ffa346;
+  box-shadow: 0 0 8px #ffa346, inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+.cell.filled-O {
+  background: #f0f000;
+  box-shadow: 0 0 8px #f0f000, inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+.cell.filled-S {
+  background: #00e000;
+  box-shadow: 0 0 8px #00e000, inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+.cell.filled-T {
+  background: #b84cff;
+  box-shadow: 0 0 8px #b84cff, inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+.cell.filled-Z {
+  background: #f00000;
+  box-shadow: 0 0 8px #f00000, inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+/* Stil pentru ghost piece */
+.ghost-cell {
+  opacity: 0.3;
+}
+
+/* Butoane pentru touch controls */
+.touch-controls {
+  display: none;
+  margin-top: 15px;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.touch-controls button {
+  background: transparent;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.touch-controls button:hover {
+  background: #00ffcc;
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* Overlay Game Over */
+.game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.game-over-content {
+  background: #111;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px #00ffcc;
+}
+.game-over-content h2 {
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px #00ffcc;
+}
+.game-over-content button {
+  margin-top: 10px;
+  background: transparent;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.game-over-content button:hover {
+  background: #00ffcc;
+  color: #000;
+  transform: scale(1.05);
+}
+
+
+/* Credit autor */
+.author-credit {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  text-align: center;
+  text-shadow: 0 0 4px #00ffcc;
+}
+
+/* Responsivitate */
+@media (max-width: 600px) {
+  /* Afișăm butoanele touch pe ecrane mici */
+  .touch-controls {
     display: flex;
-    justify-content: center;
-    align-items: center;
   }
-  
-  .author-credit {
-    margin-top: 12px;
-    font-size: 0.85em;
-    color: #cccccc;
-    opacity: 0.75;
-    text-align: center;
-  }
-  
-  /* ===========================
-     CONTAINER GENERAL (app-container)
-     =========================== */
   .app-container {
-    /* Efect de “glass” / blur subtil */
-    background: rgba(32, 32, 32, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-  
-    /* Mărime fluidă, dar nu prea mare:
-       clamp(320px, 90vw, 500px) => min 320px, max 500px, altfel 90% din viewport */
-    width: clamp(320px, 90vw, 500px);
-  
-    /* Layout intern */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 24px 16px; /* spațiu interior */
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 16px;
   }
-  
-  /* ===========================
-     CONTAINER JOC (game-container)
-     =========================== */
-  .game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  /* Titlul jocului */
   .game-container h1 {
-    font-size: 2em;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 4px;
+    font-size: 1.8rem;
   }
-  
-  /* Scor */
-  .game-container p {
-    font-size: 1.2em;
-    color: #dddddd;
-  }
-  
-  /* ===========================
-     BUTOANE (Start, Pauză, Stop)
-     =========================== */
-  .game-controls {
-    display: flex;
-    gap: 16px;
-  }
-  
   .game-controls button {
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 12px 16px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    padding: 8px 14px;
+    font-size: 0.8rem;
   }
-  
-  /* Efect de hover & active pentru butoane */
-  .game-controls button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-  }
-  .game-controls button:active {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(0);
-  }
-  
-  /* ===========================
-     TABLA DE JOC (board)
-     =========================== */
   .board {
-    /* Grid 20 rânduri x 10 coloane */
-    display: grid;
-    grid-template-rows: repeat(20, 26px);
-    grid-template-columns: repeat(10, 26px);
-  
-    /* Mici spații între celule și un chenar rotunjit */
-    gap: 2px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.2);
-  
-    /* Distanță față de butoane */
-    margin-top: 8px;
+    grid-template-rows: repeat(20, 1fr);
+    grid-template-columns: repeat(10, 1fr);
   }
-  
-  /* ===========================
-     CELULE INDIVIDUALE (cell)
-     =========================== */
-  .cell {
-    /* Eliminăm border-ul individual, lăsăm doar “gap: 2px” între celule */
-    width: 26px;
-    height: 26px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  /* ===========================
-     CULORI "NEON" PENTRU TETROMINO
-     =========================== */
-  .cell.filled-I {
-    background: #00f0f0;
-    box-shadow: 0 0 6px #00f0f0, inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  .cell.filled-J {
-    background: #4e5dff;
-    box-shadow: 0 0 6px #4e5dff, inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  .cell.filled-L {
-    background: #ffa346;
-    box-shadow: 0 0 6px #ffa346, inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  .cell.filled-O {
-    background: #f0f000;
-    box-shadow: 0 0 6px #f0f000, inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  .cell.filled-S {
-    background: #00e000;
-    box-shadow: 0 0 6px #00e000, inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  .cell.filled-T {
-    background: #b84cff;
-    box-shadow: 0 0 6px #b84cff, inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  .cell.filled-Z {
-    background: #f00000;
-    box-shadow: 0 0 6px #f00000, inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* ===========================
-     RESPONSIVE DESIGN (max-width: 600px)
-     =========================== */
-  @media (max-width: 600px) {
-    /* Containerul devine full screen, stil “app” pe mobil */
-    .app-container {
-      width: 100vw;
-      height: 100vh;
-      border-radius: 0;
-      box-shadow: none;
-      background: rgba(32, 32, 32, 0.8);
-      padding: 16px;
-    }
-  
-    .game-container {
-      flex: 1;
-      justify-content: center;
-    }
-  
-    .board {
-      /* Lăsăm board-ul să ocupe 90% din lățimea ecranului */
-      width: 90vw;
-      /* Menținem raport 10:20 */
-      aspect-ratio: 10 / 20;
-      max-height: 80vh;
-  
-      /* Refacem grid-ul cu linii/fr: se vor adapta dimensiunilor
-         (celulele devin flexibile). */
-      grid-template-rows: repeat(20, 1fr);
-      grid-template-columns: repeat(10, 1fr);
-  
-      border-radius: 12px;
-    }
-  
-    .cell {
-      border-radius: 2px;
-    }
-  
-    /* Ajustăm puțin fonturile și butoanele */
-    .game-container h1 {
-      font-size: 1.8em;
-    }
-    .game-container p {
-      font-size: 1em;
-    }
-  
-    .game-controls button {
-      padding: 10px 14px;
-      font-size: 0.9em;
-    }
-  }
-  
+}
